@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lingator</title>
+    <link rel="stylesheet" href="styles.css">
+    <datalist id="language-list">
+        <option value="English">
+        <option value="Spanish">
+        <option value="French">
+        <option value="German">
+        <option value="Italian">
+        <option value="Portuguese">
+        <option value="Dutch">
+        <option value="Swedish">
+        <option value="Danish">
+        <option value="Norwegian">
+        <option value="Polish">
+        <option value="Russian">
+        <option value="Japanese">
+        <option value="Chinese (Simplified)">
+        <option value="Chinese (Traditional)">
+        <option value="Korean">
+        <option value="Arabic">
+        <option value="Hindi">
+        <option value="Vietnamese">
+        <option value="Thai">
+        <option value="Turkish">
+    </datalist>
+</head>
+<body>
+    <!-- Title Page -->
+    <div id="titlePage" class="page">
+        <div class="title-container">
+            <div class="title-content">
+                <h1 id="title_h1" class="playfair">Lingator</h1>
+                <p id="title_welcome">Welcome! Please sign in or create a new account to get started.</p>
+                <button id="btn_sign_in" onclick="goToPage('signInPage');">Sign In</button>
+                <button id="btn_sign_up" onclick="goToPage('signUpPage');">Sign Up</button>
+            </div>
+            <div class="language-row">
+                <button class="lang-button" onclick="selectLanguage('en')">English</button>
+                <button class="lang-button" onclick="selectLanguage('fr')">Français</button>
+                <button class="lang-button" onclick="selectLanguage('zh')">中文</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Sign In Page -->
+    <div id="signInPage" class="page">
+        <div class="container">
+            <h1 id="signin_h1">Sign In</h1>
+            <form>
+                <label id="label_signin_email" for="signin-email">Email:</label>
+                <input type="email" id="signin-email" name="email" required>
+               
+                <label id="label_signin_password" for="signin-password">Password:</label>
+                <input type="password" id="signin-password" name="password" required>
+               
+                <button id="btn_signin_submit" type="button" onclick="goToPage('indexPage');">Sign In</button>
+            </form>
+            <p><span id="signin_no_account">Don't have an account?</span> <button id="btn_goto_signup" class="link-button" type="button" onclick="goToPage('signUpPage');">Sign Up</button></p>
+            <button id="btn_signin_back" class="mt-20" onclick="goToPage('titlePage');">Back</button>
+        </div>
+    </div>
+
+
+    <!-- Sign Up Page -->
+    <div id="signUpPage" class="page">
+        <div class="container">
+            <h1 id="signup_h1">Sign Up</h1>
+            <form>
+                <label id="label_signup_name" for="signup-name">Name:</label>
+                <input type="text" id="signup-name" name="name" required>
+               
+                <label id="label_signup_email" for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" required>
+               
+                <label id="label_signup_password" for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" required>
+               
+                <label id="label_signup_confirm" for="signup-confirmPassword">Confirm Password:</label>
+                <input type="password" id="signup-confirmPassword" name="confirmPassword" required>
+               
+                <label id="label_signup_role" for="signup-role">Select Your Role:</label>
+                <select id="signup-role" name="role" required>
+                    <option value="">-- Choose One --</option>
+                    <option value="Get Informed">Get Informed</option>
+                    <option value="Professional">Professional</option>
+                </select>
+               
+                <label id="label_signup_language" for="signup-language">Preferred Language:</label>
+                <input type="text" id="signup-language" name="language" list="language-list" placeholder="Search for a language" required>
+               
+                <button id="btn_create_account" type="button" onclick="createAccount();">Create Account</button>
+            </form>
+            <p><span id="signup_have_account">Already have an account?</span> <button id="btn_goto_signin" class="link-button" type="button" onclick="goToPage('signInPage');">Sign In</button></p>
+            <button id="btn_signup_back" class="mt-20" onclick="goToPage('titlePage');">Back</button>
+        </div>
+    </div>
+
+
+    <!-- Index Page (Main) -->
+    <div id="indexPage" class="page">
+        <section class="banner-top">
+            <button id="btn_profile" class="profile-button banner-profile" onclick="goToPage('profilePage');">👤 Profile</button>
+            <div class="banner-content">
+                <h1 id="index_h1" class="playfair">Lingator</h1>
+            </div>
+        </section>
+
+        <!-- About Section and Logo -->
+        <section class="about-wrap">
+            <div class="container">
+                <div class="about-section">
+                    <div class="about">
+                        <h2 id="about_h2">About</h2>
+                        <p id="about_p">Lingator is a translation service designed to help navigate legal and medical systems. Our goal is to help users have a clear understanding of their rights, healthcare, and options available to them.</p>
+                        <p id="about_p">Many immigrants face barriers as they are unfamiliar with the Canadian law and medical procedures due to language barriers and complex terminology. Lingator strives to bridge this gap by providing accurate and intuitive translations and practical next steps, empowering users to make informed decisions.</p>
+                        <p id="about_p">Our goal is to ensure that English as a second language is never a barrier to understanding essential legal and medical information.</p>
+                    </div>
+                    <div class="logo">
+                        <img src="assets/Lingator_Logo.png" alt="Site logo" class="site-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyze Section -->
+        <section class="analyze-section">
+            <div class="container">
+                <h2 id="analyze_h2">Analyze Document</h2>
+                <p id="analyze_p">Choose a file to analyze:</p>
+                <input type="file" id="docUpload" />
+                <button id="btn_analyze" onclick="goToPage('resultsPage');">Analyze Document & View Results</button>
+
+                <!-- Specialist Button -->
+                <button id="btn_specialist" class="mt-20" onclick="goToPage('specialistPage');">Connect with a Specialist</button>
+
+                <button id="btn_index_back" class="mt-20" onclick="goToPage('titlePage');">Back</button>
+
+                <pre id="output"></pre>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Results Page -->
+    <div id="resultsPage" class="page">
+        <div class="container">
+            <h1 id="results_h1">Analysis Results</h1>
+           
+            <div class="feedback-box">
+                <h2 id="feedback_h2">Summary</h2>
+                <ul id="feedback_list">
+                    <li><strong>Cease and Desist:</strong> Demands you stop a specific activity that the sender claims to be unlawful.</li>
+                    <li>It claims that you are using someone else’s copyrighted work without permission and demands that you stop it immediately.</li>
+                    <li>If such actions continue, the sender may proceed with legal action and seek damages.</li>
+                </ul>
+            </div>
+           
+            <div class="next-steps-box">
+                <h2 id="next_h2">Next Steps</h2>
+                <ul id="next_steps_list">
+                    <li>Pause the disputed activity while you assess the situation</li>
+                    <li>Review the claim carefully and identify what action is being challenged</li>
+                    <li>Consider seeking legal advice to understand your options</li>
+                </ul>
+            </div>
+           
+            <button id="btn_results_specialist" class="mr-10" onclick="goToPage('specialistPage');">Connect with Specialist</button>
+            <button id="btn_results_analyze_again" class="mr-10" onclick="goToPage('indexPage');">Analyze Another Document</button>
+            <button id="btn_results_home" onclick="goToPage('indexPage');">Back to Home</button>
+        </div>
+    </div>
+
+
+    <!-- Connect with Specialist Page -->
+    <div id="specialistPage" class="page">
+        <div class="container">
+            <h1>Connect with a Specialist</h1>
+            <p>Our specialists are ready to help you improve your needs.</p>
+            <form>
+                <label for="specialist-topic">What do you need help with?</label>
+                <input type="text" id="specialist-topic" name="topic" placeholder="e.g., Medical, Legal Aid" required>
+               
+                <label for="specialist-availability">Preferred Time:</label>
+                <select id="specialist-availability" name="availability" required>
+                    <option value="">-- Select a Time --</option>
+                    <option value="morning">Morning (9 AM - 12 PM)</option>
+                    <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                    <option value="evening">Evening (5 PM - 9 PM)</option>
+                </select>
+               
+                <button type="button" onclick="alert('Specialist request submitted!');">Request Specialist</button>
+            </form>
+            <button class="mt-20" onclick="goToPage('indexPage');">Back</button>
+        </div>
+    </div>
+
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="page">
+        <div class="container">
+            <h1>My Profile</h1>
+           
+            <div class="profile-section">
+                <h2>Account Information</h2>
+                <div class="profile-info">
+                    <div class="info-row">
+                        <label>Name:</label>
+                        <span id="profile_name">-</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Email:</label>
+                        <span id="profile_email">-</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="profile-section">
+                <h2>Preferences</h2>
+                <div id="profile_view" class="profile-info">
+                    <div class="info-row">
+                        <label>Role:</label>
+                        <span id="profile_role_display">-</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Preferred Language:</label>
+                        <span id="profile_language_display">-</span>
+                    </div>
+                    <button type="button" onclick="toggleEditMode();">Edit Preferences</button>
+                </div>
+                <div id="profile_edit" class="profile-edit" style="display:none;">
+                    <div class="form-row">
+                        <label for="profile_role">Role:</label>
+                        <select id="profile_role">
+                            <option value="">-- Choose One --</option>
+                            <option value="Get Informed">Get Informed</option>
+                            <option value="Professional">Professional</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="profile_language">Preferred Language:</label>
+                        <input type="text" id="profile_language" list="language-list" placeholder="Search for a language" required>
+                    </div>
+                    <button type="button" onclick="saveProfile();">Save Changes</button>
+                    <button type="button" onclick="toggleEditMode();" class="btn-secondary">Cancel</button>
+                </div>
+            </div>
+            <button class="mt-20" onclick="goToPage('indexPage');">Back</button>
+        </div>
+    </div>
+
+    <script>
+        let userData = {
+            name: '',
+            email: '',
+            role: '',
+            language: ''
+        };
+
+        function goToPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if (pageId === 'profilePage') {
+                loadProfileData();
+            }
+        }
+
+        function createAccount() {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const role = document.getElementById('signup-role').value;
+            const language = document.getElementById('signup-language').value;
+            if (name && email && role && language) {
+                userData = { name, email, role, language };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                goToPage('indexPage');
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+
+        // Load user data for profile page
+        function loadProfileData() {
+            const stored = localStorage.getItem('userData');
+            if (stored) {
+                userData = JSON.parse(stored);
+            }
+
+            document.getElementById('profile_name').textContent = userData.name || '-';
+            document.getElementById('profile_email').textContent = userData.email || '-';
+           
+            // Role is now stored as the display label ("Get Informed" / "Professional")
+            const roleDisplay = userData.role || '-';
+            document.getElementById('profile_role_display').textContent = roleDisplay;
+            document.getElementById('profile_language_display').textContent = userData.language || '-';
+           
+            // Set edit form values
+            document.getElementById('profile_role').value = userData.role || '';
+            document.getElementById('profile_language').value = userData.language || '';
+           
+            // Reset edit mode to view mode
+            document.getElementById('profile_view').style.display = 'block';
+            document.getElementById('profile_edit').style.display = 'none';
+        }
+
+
+        // Toggle between view and edit mode
+        function toggleEditMode() {
+            const viewMode = document.getElementById('profile_view');
+            const editMode = document.getElementById('profile_edit');
+           
+            if (viewMode.style.display === 'none') {
+                viewMode.style.display = 'block';
+                editMode.style.display = 'none';
+            } else {
+                viewMode.style.display = 'none';
+                editMode.style.display = 'block';
+            }
+        }
+
+
+        // Save updated profile data
+        function saveProfile() {
+            const role = document.getElementById('profile_role').value;
+            const language = document.getElementById('profile_language').value;
+            if (role && language) {
+                userData.role = role;
+                userData.language = language;
+                localStorage.setItem('userData', JSON.stringify(userData));
+                alert('Profile updated successfully!');
+                loadProfileData();
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+
+
+        // Load stored user data on page load
+        window.addEventListener('load', function() {
+            const stored = localStorage.getItem('userData');
+            if (stored) {
+                userData = JSON.parse(stored);
+            }
+        });
+
+        goToPage('titlePage');
+
+        const translations = {
+            en: {
+                title_h1: 'Lingator',
+                title_welcome: 'Welcome! Please sign in or create a new account to get started.',
+                btn_sign_in: 'Sign In',
+                btn_sign_up: 'Sign Up'
+            },
+            fr: {
+                title_h1: 'Lingator',
+                title_welcome: "Bienvenue ! Veuillez vous connecter ou créer un compte pour commencer.",
+                btn_sign_in: 'Se connecter',
+                btn_sign_up: "S'inscrire"
+            }
+        };
+
+        function applyTranslations(code) {
+            const t = translations[code] || translations.en;
+            document.documentElement.lang = code;
+
+            const titleKeys = ['title_h1', 'title_welcome', 'btn_sign_in', 'btn_sign_up', 'about_h2', 'about_p'];
+            titleKeys.forEach(key => {
+                const el = document.getElementById(key);
+                if (!el) return;
+                el.textContent = t[key] || el.textContent;
+            });
+        }
+
+        function selectLanguage(code) {
+            window.selectedLanguage = code;
+            applyTranslations(code);
+        }
+    </script>
+</body>
+</html>
