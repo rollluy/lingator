@@ -1,2 +1,1 @@
-
 https://lingator.netlify.app/
